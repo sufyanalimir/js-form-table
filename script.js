@@ -13,9 +13,9 @@ function inputLength() {
 function verifyAge() {
   if (inputLength() > 0) {
     if (userAge.value >= 18) {
-      verifyMessage.textContent = "Congrats! You are eligible";
+      verifyMessage.textContent = "Congrats! You are eligible.";
     } else {
-      verifyMessage.textContent = "Sorry! You are under age";
+      verifyMessage.textContent = "Sorry! You are under age.";
     }
   }
   userAge.value = "";
