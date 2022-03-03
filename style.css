@@ -1,5 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=League+Spartan:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  font-family: "League Spartan", sans-serif;
+  transition: all 0.3s ease-in;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+header {
+  background: #4ca1af; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #c4e0e5,
+    #4ca1af
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #c4e0e5,
+    #4ca1af
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header h2 {
+  padding: 1em 0;
+  text-align: center;
+}
+
+.verify-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.verify-section input {
+  height: 2.5em;
+  margin: 1em;
+}
+
+.verify-section .age {
+  width: 20em;
+}
+
+.verify-section .btn-age-verify {
+  width: 7em;
+  padding: 0.5em 0;
+  border-radius: 50% 20%;
+  color: #fff;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.verify-section .btn-age-verify:hover {
+  background: #fff;
+  color: #000000;
+  border: 1px solid #000;
 }
