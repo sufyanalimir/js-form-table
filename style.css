@@ -76,7 +76,7 @@ header h2 {
 }
 
 .form-section {
-  /* display: none; */
+  display: none;
 }
 .form-section form {
   display: flex;

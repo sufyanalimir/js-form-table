@@ -54,6 +54,7 @@ function verifyAge() {
       formSection.style.display = "block";
     } else {
       verifyMessage.textContent = "Sorry! You are under age.";
+      formSection.style.display = "none";
     }
   }
   userAge.value = "";
