@@ -1,8 +1,24 @@
 let userAge = document.getElementById("age");
 let verifyMessage = document.querySelector(".verifyMessage");
 let ageVerifyBtn = document.getElementById("btn-age-verify");
-let formSection = document.querySelector(".form-section");
 
+let userName = document.getElementById("name");
+let userEmail = document.getElementById("email");
+let userMobile = document.getElementById("mobile");
+let userState = document.getElementById("states");
+let userCity = document.getElementById("cities");
+
+let formSection = document.querySelector(".form-section");
+let formSubmitBtn = document.getElementById("form-submit");
+
+let dataTable = document.querySelector(".data-table");
+let dataObj = {
+  name: "",
+  email: "",
+  mobile: "",
+  state: "",
+  city: "",
+};
 const states = [
   "Andhra Pradesh",
   "Arunachal Pradesh",
@@ -60,4 +76,43 @@ function verifyAge() {
   userAge.value = "";
 }
 
+function createNewRow() {
+  var row = dataTable.insertRow(1);
+  var cell_1 = row.insertCell(0);
+  var cell_2 = row.insertCell(1);
+  var cell_3 = row.insertCell(2);
+  var cell_4 = row.insertCell(3);
+  var cell_5 = row.insertCell(4);
+
+  var cell_6 = row.insertCell(5);
+  var cell_7 = row.insertCell(6);
+
+  cell_1.innerHTML = dataObj.name;
+  cell_2.innerHTML = dataObj.email;
+  cell_3.innerHTML = dataObj.mobile;
+  cell_4.innerHTML = dataObj.state;
+  cell_5.innerHTML = dataObj.city;
+}
+
+function resetAll() {
+  userName.value = "";
+  userEmail.value = "";
+  userMobile.value = "";
+  userState.value = "";
+  userCity.value = "";
+}
+
+function submitData() {
+  dataObj.name = userName.value;
+  dataObj.email = userEmail.value;
+  dataObj.mobile = userMobile.value;
+  dataObj.state = userState.value;
+  dataObj.city = userCity.value;
+  createNewRow();
+  formSection.style.display = "none";
+  resetAll();
+}
+
+//Event Listeners
 ageVerifyBtn.addEventListener("click", verifyAge);
+formSubmitBtn.addEventListener("click", submitData);

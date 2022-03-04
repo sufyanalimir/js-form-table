@@ -78,7 +78,7 @@ header h2 {
 .form-section {
   display: none;
 }
-.form-section form {
+.form-section table {
   display: flex;
   justify-content: center;
   margin: 1.5em auto;
@@ -116,4 +116,27 @@ tr {
   background: #fff;
   color: #000000;
   border: 1px solid #000;
+}
+
+.data-table {
+  width: 100%;
+  /* display: none; */
+}
+
+.data-table th {
+  padding: 1em 0;
+  text-align: center;
+}
+
+.data-table tr {
+  padding: 1em 0;
+}
+
+.data-table td {
+  padding: 0.5em 0;
+  text-align: center;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #d6eeee;
 }
