@@ -3,8 +3,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-body {
   font-family: "League Spartan", sans-serif;
   transition: all 0.3s ease-in;
 }
@@ -75,4 +73,47 @@ header h2 {
 .verifyMessage {
   text-align: center;
   padding: 0.7em 0;
+}
+
+.form-section {
+  /* display: none; */
+}
+.form-section form {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em auto;
+}
+
+.form-section td,
+tr {
+  padding: 1em;
+}
+
+.form-section input {
+  height: 2em;
+  width: 15em;
+}
+
+.form-section .form-submit {
+  width: 7em;
+  padding: 0.5em 0;
+  border-radius: 50% 20%;
+  color: #fff;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.form-section .form-submit:hover {
+  background: #fff;
+  color: #000000;
+  border: 1px solid #000;
 }

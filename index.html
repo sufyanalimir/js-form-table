@@ -21,6 +21,51 @@
             <h4 class="verifyMessage"></h4>
         </div>
     </header>
+    <section class="form-section">
+        <div class="container">
+            <form action="">
+                <table>
+                    <tr>
+                        <td>Enter Name:</td>
+                        <td>
+                            <input type="text" name="name" id="name" placeholder="Enter your name..">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enter Email:</td>
+                        <td>
+                            <input type="email" name="Email" id="email" placeholder="Enter your email..">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enter Mobile:</td>
+                        <td>
+                            <input type="tel" name="mobile" id="mobile" placeholder="Enter your mobile no..">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Select State:</td>
+                        <td>
+                            <input list="statesList" name="states" id="states" placeholder="Select state..">
+                            <datalist id="statesList"></datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Select City:</td>
+                        <td>
+                            <input list="citiesList" name="cities" id="cities" placeholder="Select city..">
+                            <datalist id="citiesList"></datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Submit" name="form-submit" id="form-submit" class="form-submit">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
