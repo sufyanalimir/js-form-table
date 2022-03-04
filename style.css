@@ -49,7 +49,7 @@ header h2 {
 .verify-section .btn-age-verify {
   width: 7em;
   padding: 0.5em 0;
-  border-radius: 50% 20%;
+  border-radius: 8%;
   color: #fff;
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -97,7 +97,7 @@ tr {
 .form-section .form-submit {
   width: 7em;
   padding: 0.5em 0;
-  border-radius: 50% 20%;
+  border-radius: 8%;
   color: #fff;
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(
