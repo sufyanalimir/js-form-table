@@ -103,14 +103,24 @@ function resetAll() {
 }
 
 function submitData() {
-  dataObj.name = userName.value;
-  dataObj.email = userEmail.value;
-  dataObj.mobile = userMobile.value;
-  dataObj.state = userState.value;
-  dataObj.city = userCity.value;
-  createNewRow();
-  formSection.style.display = "none";
-  resetAll();
+  if (
+    userName.value === "" ||
+    userEmail.value === "" ||
+    userMobile.value === "" ||
+    userState.value === "" ||
+    userCity.value === ""
+  ) {
+    alert("All fields are mandatory. Please fill.");
+  } else {
+    dataObj.name = userName.value;
+    dataObj.email = userEmail.value;
+    dataObj.mobile = userMobile.value;
+    dataObj.state = userState.value;
+    dataObj.city = userCity.value;
+    createNewRow();
+    formSection.style.display = "none";
+    resetAll();
+  }
 }
 
 //Event Listeners
