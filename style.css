@@ -97,6 +97,13 @@ header h2 {
   text-align: center;
 }
 
+.data-table td input {
+  border: none;
+  background: transparent;
+  text-align: center;
+  width: 9.5em;
+}
+
 .data-table tr:nth-child(even) {
   background-color: #d6eeee;
 }

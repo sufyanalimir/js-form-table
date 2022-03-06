@@ -27,6 +27,8 @@ let dataObj = {
   city: "",
 };
 
+let deleteBtn = document.getElementsByClassName("delete");
+
 /* ------------- Loading States and Cities through array ------------- */
 
 const states = [
@@ -183,19 +185,39 @@ function createNewRow() {
   let td7 = document.createElement("td");
   let td8 = document.createElement("td");
 
+  let inp1 = document.createElement("input");
+  inp1.value = userId.value;
+  inp1.setAttribute("readonly", "");
+  let inp2 = document.createElement("input");
+  inp2.value = userName.value;
+  inp2.setAttribute("readonly", "");
+  let inp3 = document.createElement("input");
+  inp3.value = email.value;
+  inp3.setAttribute("readonly", "");
+  let inp4 = document.createElement("input");
+  inp4.value = mobile.value;
+  inp4.setAttribute("readonly", "");
+  let inp5 = document.createElement("input");
+  inp5.value = userState.value;
+  inp5.setAttribute("readonly", "");
+  let inp6 = document.createElement("input");
+  inp6.value = userCity.value;
+  inp6.setAttribute("readonly", "");
+
   let btn1 = document.createElement("button");
   let btn2 = document.createElement("button");
   btn1.appendChild(document.createTextNode("Edit"));
   btn1.setAttribute("class", "btn btn-primary");
   btn2.appendChild(document.createTextNode("Del"));
-  btn2.setAttribute("class", "btn btn-primary");
+  btn2.setAttribute("class", "btn btn-primary delete");
+  btn2.onclick = deleteWholeRow;
 
-  td1.appendChild(document.createTextNode(userId.value));
-  td2.appendChild(document.createTextNode(userName.value));
-  td3.appendChild(document.createTextNode(email.value));
-  td4.appendChild(document.createTextNode(mobile.value));
-  td5.appendChild(document.createTextNode(userState.value));
-  td6.appendChild(document.createTextNode(userCity.value));
+  td1.appendChild(inp1);
+  td2.appendChild(inp2);
+  td3.appendChild(inp3);
+  td4.appendChild(inp4);
+  td5.appendChild(inp5);
+  td6.appendChild(inp6);
   td7.appendChild(btn1);
   td8.appendChild(btn2);
 
@@ -256,6 +278,12 @@ function submitData() {
 }
 
 /* ----------------------------------------------------------------------- */
+
+function deleteWholeRow(e) {
+  e.target.removeEventListener("click", deleteWholeRow, false);
+  e.target.parentNode.parentNode.remove();
+}
+
 //Event Listeners
 ageVerifyBtn.addEventListener("click", verifyAge);
 
@@ -265,4 +293,7 @@ email.addEventListener("focusout", emailValidation);
 password.addEventListener("focusout", passwordValidation);
 confirmPass.addEventListener("focusout", matchPassword);
 
+for (var i = 0; i < deleteBtn.length; i++) {
+  deleteBtn[i].addEventListener("click", deleteWholeRow, false);
+}
 submit.addEventListener("click", submitData);
