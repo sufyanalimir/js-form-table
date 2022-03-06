@@ -7,11 +7,6 @@
   transition: all 0.3s ease-in;
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-}
-
 header {
   background: #4ca1af; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -27,7 +22,7 @@ header {
 }
 
 header h2 {
-  padding: 1em 0;
+  padding: 0.5em 0;
   text-align: center;
 }
 
@@ -78,49 +73,14 @@ header h2 {
 .form-section {
   display: none;
 }
-.form-section table {
-  display: flex;
-  justify-content: center;
-  margin: 1.5em auto;
-}
 
-.form-section td,
-tr {
-  padding: 1em;
-}
-
-.form-section input {
-  height: 2em;
-  width: 15em;
-}
-
-.form-section .form-submit {
-  width: 7em;
-  padding: 0.5em 0;
-  border-radius: 8%;
-  color: #fff;
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.form-section .form-submit:hover {
-  background: #fff;
-  color: #000000;
-  border: 1px solid #000;
+.form-section p {
+  margin-bottom: 0.2rem;
 }
 
 .data-table {
   width: 100%;
-  /* display: none; */
+  display: none;
 }
 
 .data-table th {

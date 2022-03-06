@@ -2,23 +2,33 @@ let userAge = document.getElementById("age");
 let verifyMessage = document.querySelector(".verifyMessage");
 let ageVerifyBtn = document.getElementById("btn-age-verify");
 
-let userName = document.getElementById("name");
-let userEmail = document.getElementById("email");
-let userMobile = document.getElementById("mobile");
-let userState = document.getElementById("states");
-let userCity = document.getElementById("cities");
+let form_section = document.querySelector(".form-section");
 
-let formSection = document.querySelector(".form-section");
-let formSubmitBtn = document.getElementById("form-submit");
+let userName = document.getElementById("name");
+let mobile = document.getElementById("mobile");
+let email = document.getElementById("email");
+let password = document.getElementById("pswd");
+let confirmPass = document.getElementById("conPswd");
+let userState = document.getElementById("state");
+let userCity = document.getElementById("city");
+let span = document.getElementsByTagName("span");
+let submit = document.getElementById("submit");
+let userId = document.getElementById("userId");
+let userIdValue = "";
 
 let dataTable = document.querySelector(".data-table");
 let dataObj = {
+  id: "",
   name: "",
-  email: "",
   mobile: "",
+  email: "",
+  password: "",
   state: "",
   city: "",
 };
+
+/* ------------- Loading States and Cities through array ------------- */
+
 const states = [
   "Andhra Pradesh",
   "Arunachal Pradesh",
@@ -30,12 +40,6 @@ const states = [
   "Punjab",
   "Uttar Pradesh",
 ];
-
-let stateOptions = "";
-for (var i = 0; i < states.length; i++) {
-  stateOptions += '<option value="' + states[i] + '" />';
-}
-document.getElementById("statesList").innerHTML = stateOptions;
 
 const cities = [
   "Akola",
@@ -49,11 +53,21 @@ const cities = [
   "Aurangabad",
 ];
 
+let stateOptions = "";
+for (var i = 0; i < states.length; i++) {
+  stateOptions += '<option value="' + states[i] + '" />';
+}
+document.getElementById("statesList").innerHTML = stateOptions;
+
 let cityOptions = "";
 for (var i = 0; i < cities.length; i++) {
   cityOptions += '<option value="' + cities[i] + '" />';
 }
 document.getElementById("citiesList").innerHTML = cityOptions;
+
+/* --------------------------------------------------------------------- */
+
+/* ----------------------- Age verification ---------------------------- */
 
 function inputLength() {
   if (userAge.value.length > 0) {
@@ -67,62 +81,188 @@ function verifyAge() {
   if (inputLength() > 0) {
     if (userAge.value >= 18) {
       verifyMessage.textContent = "Congrats! You are eligible.";
-      formSection.style.display = "block";
+      form_section.style.display = "block";
     } else {
       verifyMessage.textContent = "Sorry! You are under age.";
-      formSection.style.display = "none";
+      form_section.style.display = "none";
     }
   }
   userAge.value = "";
 }
 
-function createNewRow() {
-  var row = dataTable.insertRow(1);
-  var cell_1 = row.insertCell(0);
-  var cell_2 = row.insertCell(1);
-  var cell_3 = row.insertCell(2);
-  var cell_4 = row.insertCell(3);
-  var cell_5 = row.insertCell(4);
+/* ----------------------------------------------------------------------- */
 
-  var cell_6 = row.insertCell(5);
-  var cell_7 = row.insertCell(6);
+/* ------------------------- Regex Validation ---------------------------- */
 
-  cell_1.innerHTML = dataObj.name;
-  cell_2.innerHTML = dataObj.email;
-  cell_3.innerHTML = dataObj.mobile;
-  cell_4.innerHTML = dataObj.state;
-  cell_5.innerHTML = dataObj.city;
+function nameValidation() {
+  let nameExpr = /^[A-Za-z. ]{4,30}$/;
+  if (nameExpr.test(userName.value)) {
+    document.getElementById("name_error").innerHTML = "";
+    let fullname = userName.value;
+    let strippedName = fullname.replace(/\s+/g, "");
+    for (let i = 0; i < 4; i++) {
+      userIdValue += strippedName[i];
+    }
+    document.getElementById("name_error").innerHTML = "*Valid Name..";
+    document.getElementById("name_error").classList.remove("text-danger");
+    document.getElementById("name_error").classList.add("text-success");
+  } else {
+    document.getElementById("name_error").innerHTML = "*Invalid Name..";
+    document.getElementById("name_error").classList.remove("text-success");
+    document.getElementById("name_error").classList.add("text-danger");
+  }
 }
 
-function resetAll() {
+function mobileValidation() {
+  let mobileExpr = /^[6789]{1}[0-9]{9}$/;
+  if (mobileExpr.test(mobile.value)) {
+    document.getElementById("mob_error").innerHTML = "";
+    for (let i = 0; i < 2; i++) {
+      userIdValue += mobile.value[i];
+    }
+    userId.value = userIdValue;
+    dataObj.id = userIdValue; // storing id in dataObj
+    userIdValue = "";
+  } else {
+    document.getElementById("mob_error").innerHTML = "*Invalid Number";
+  }
+}
+
+function emailValidation() {
+  let emailExpr = /^[A-Za-z0-9_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
+  if (emailExpr.test(email.value)) {
+    document.getElementById("email_error").innerHTML = "";
+  } else {
+    document.getElementById("email_error").innerHTML = "*Invalid Email";
+  }
+}
+
+function passwordValidation() {
+  let passwordExpr = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+  if (passwordExpr.test(password.value)) {
+    document.getElementById("pswd_error").innerHTML = "";
+  } else {
+    document.getElementById("pswd_error").innerHTML = "*Invalid Password";
+  }
+}
+
+function matchPassword() {
+  if (password.value.match(confirmPass.value)) {
+    document.getElementById("conPswd_error").innerHTML = "";
+  } else {
+    document.getElementById("conPswd_error").innerHTML =
+      "*Passwords do not match";
+  }
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* ---------------------Storing Values in Object ------------------------- */
+
+function storeValuesInObject() {
+  dataObj.name = userName.value;
+  dataObj.mobile = mobile.value;
+  dataObj.email = email.value;
+  dataObj.password = password.value;
+  dataObj.state = userState.value;
+  dataObj.city = userCity.value;
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* --------------------- Creating New Row -------------------------------- */
+
+function createNewRow() {
+  let tr = document.createElement("tr");
+  let td1 = document.createElement("td");
+  let td2 = document.createElement("td");
+  let td3 = document.createElement("td");
+  let td4 = document.createElement("td");
+  let td5 = document.createElement("td");
+  let td6 = document.createElement("td");
+  let td7 = document.createElement("td");
+  let td8 = document.createElement("td");
+
+  let btn1 = document.createElement("button");
+  let btn2 = document.createElement("button");
+  btn1.appendChild(document.createTextNode("Edit"));
+  btn1.setAttribute("class", "btn btn-primary");
+  btn2.appendChild(document.createTextNode("Del"));
+  btn2.setAttribute("class", "btn btn-primary");
+
+  td1.appendChild(document.createTextNode(userId.value));
+  td2.appendChild(document.createTextNode(userName.value));
+  td3.appendChild(document.createTextNode(email.value));
+  td4.appendChild(document.createTextNode(mobile.value));
+  td5.appendChild(document.createTextNode(userState.value));
+  td6.appendChild(document.createTextNode(userCity.value));
+  td7.appendChild(btn1);
+  td8.appendChild(btn2);
+
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  tr.appendChild(td3);
+  tr.appendChild(td4);
+  tr.appendChild(td5);
+  tr.appendChild(td6);
+  tr.appendChild(td7);
+  tr.appendChild(td8);
+  dataTable.appendChild(tr);
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* --------------------- Reset values of form ---------------------------- */
+
+function resetValuesOfForm() {
+  userId.value = "";
   userName.value = "";
-  userEmail.value = "";
-  userMobile.value = "";
+  mobile.value = "";
+  email.value = "";
+  password.value = "";
+  confirmPass.value = "";
   userState.value = "";
   userCity.value = "";
 }
 
+/* ----------------------------------------------------------------------- */
+
+/* --------------------- final step submit data -------------------------- */
+
 function submitData() {
+  let emptyField = false;
   if (
     userName.value === "" ||
-    userEmail.value === "" ||
-    userMobile.value === "" ||
+    mobile.value === "" ||
+    email.value === "" ||
+    password.value === "" ||
+    confirmPass.value === "" ||
     userState.value === "" ||
     userCity.value === ""
   ) {
-    alert("All fields are mandatory. Please fill.");
+    emptyField = true;
+  }
+
+  if (emptyField) {
+    alert("All fields are mandatory. Please fill all the details.");
   } else {
-    dataObj.name = userName.value;
-    dataObj.email = userEmail.value;
-    dataObj.mobile = userMobile.value;
-    dataObj.state = userState.value;
-    dataObj.city = userCity.value;
+    storeValuesInObject();
     createNewRow();
-    formSection.style.display = "none";
-    resetAll();
+    form_section.style.display = "none";
+    dataTable.style.display = "table";
+    resetValuesOfForm();
+    console.log(dataTable);
   }
 }
 
+/* ----------------------------------------------------------------------- */
 //Event Listeners
 ageVerifyBtn.addEventListener("click", verifyAge);
-formSubmitBtn.addEventListener("click", submitData);
+
+userName.addEventListener("focusout", nameValidation);
+mobile.addEventListener("focusout", mobileValidation);
+email.addEventListener("focusout", emailValidation);
+password.addEventListener("focusout", passwordValidation);
+confirmPass.addEventListener("focusout", matchPassword);
+
+submit.addEventListener("click", submitData);
